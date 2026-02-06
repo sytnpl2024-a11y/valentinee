@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Be My Valentine ❤️</title>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #ff758c, #ff7eb3);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+        text-align: center;
+    }
+
+    .card {
+        background: white;
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        max-width: 350px;
+        animation: fadeIn 1.5s ease;
+    }
+
+    h1 { color: #e63946; }
+
+    p { font-size: 18px; color: #444; }
+
+    button {
+        margin-top: 20px;
+        padding: 12px 25px;
+        font-size: 18px;
+        border-radius: 30px;
+        border: none;
+        background-color: #e63946;
+        color: white;
+        cursor: pointer;
+        transition: transform 0.2s;
+    }
+
+    button:hover { transform: scale(1.1); }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .heart {
+        position: fixed;
+        color: red;
+        animation: floatUp 4s linear infinite;
+    }
+
+    @keyframes floatUp {
+        from { transform: translateY(100vh) scale(1); opacity: 1; }
+        to { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+    }
+
+    .slideshow {
+        max-width: 90%;
+        margin: auto;
+    }
+
+    .slideshow img {
+        width: 250px;
+        height: 250px;
+        object-fit: cover;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        margin-top: 20px;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <h1>Hi My Love ❤️</h1>
+    <p>Sudan, will you be my Valentine forever?</p>
+    <button onclick="sayYes()">YES 💍</button>
+</div>
+
+<script>
+function sayYes() {
+    document.body.innerHTML = `
+        <div style="text-align:center; color:white;">
+            <h1 style="font-size:36px;">Forever My Valentine 💖</h1>
+            <p style="font-size:20px;">Every memory with you is my favorite.</p>
+            <div class="slideshow">
+                <img id="slide" src="photo1.jpg">
+            </div>
+        </div>
+    `;
+    startHearts();
+    startSlideshow();
+}
+
+function startHearts() {
+    setInterval(() => {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "❤️";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = (Math.random() * 20 + 20) + "px";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 4000);
+    }, 300);
+}
+
+function startSlideshow() {
+    const images = [
+        "photo1.jpg",
+        "photo2.jpg",
+        "photo3.jpg",
+        "photo4.jpg",
+        "photo5.jpg",
+        "photo6.jpg"
+    ];
+
+    let index = 0;
+    const slide = document.getElementById("slide");
+
+    setInterval(() => {
+        index = (index + 1) % images.length;
+        slide.src = images[index];
+    }, 2000);
+}
+</script>
+
+</body>
+</html>
